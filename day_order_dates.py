@@ -13,6 +13,15 @@ class DayOrderDates:
       return 5
     else:
       return 0
+    
+  def getDayOrderDates(self):
+    return {
+    "day_order_1": self.dayOrder_1,
+    "day_order_2": self.dayOrder_2,
+    "day_order_3": self.dayOrder_3,
+    "day_order_4": self.dayOrder_4,
+    "day_order_5": self.dayOrder_5,
+    }
 
   dayOrder_1 = [
     '06/07',

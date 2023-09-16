@@ -11,7 +11,7 @@ dod = day_order_dates.DayOrderDates()
 def home():
     return json.dumps({"message": "Hello World"})
 
-@app.route('/day_order', methods=['POST'])
+@app.route('/day_order', methods=['GET'])
 def day_order():
     if 'date' in rq.args:
         data = dod.getDayOrder(rq.args.get('date'))
@@ -21,7 +21,11 @@ def day_order():
         response = Response(data, status=200, mimetype='application/json')
         return response
 
-
+@app.route('/day_order_dates', methods=['GET'])
+def day_order_dates():
+    data = dod.getDayOrderDates()
+    response = Response(json.dumps(data), status=200, mimetype='application/json')
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
