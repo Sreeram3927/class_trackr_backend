@@ -1,21 +1,8 @@
 class DayOrderDates:
-  
-  def getDayOrder(self, date):
-    if date in self.dayOrder_1:
-      return 1
-    elif date in self.dayOrder_2:
-      return 2
-    elif date in self.dayOrder_3:
-      return 3
-    elif date in self.dayOrder_4:
-      return 4
-    elif date in self.dayOrder_5:
-      return 5
-    else:
-      return 0
     
   def getDayOrderDates(self):
     return {
+    "status": "success",
     "day_order_1": self.dayOrder_1,
     "day_order_2": self.dayOrder_2,
     "day_order_3": self.dayOrder_3,

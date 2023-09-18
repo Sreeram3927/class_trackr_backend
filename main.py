@@ -6,26 +6,27 @@ import day_order_dates
 
 app = Flask(__name__)
 dod = day_order_dates.DayOrderDates()
+dataVersion = 1
 
 @app.route('/')
 def home():
     return json.dumps({"message": "Hello World"})
 
-@app.route('/day_order', methods=['GET'])
+@app.route('/check_version', methods=['GET'])
 def day_order():
-    if 'date' in rq.args:
-        data = dod.getDayOrder(rq.args.get('date'))
-        return Response(json.dumps({"day_order": data}), status=200, mimetype='application/json')
-    else:
-        data = json.dumps({"status": "error", "msg": "Error in Input Parameters"})
-        response = Response(data, status=200, mimetype='application/json')
-        return response
+    return Response(json.dumps({"status": "success", "dataVersion": dataVersion}), status=200, mimetype='application/json')
 
 @app.route('/day_order_dates', methods=['GET'])
 def day_order_dates():
-    data = dod.getDayOrderDates()
-    response = Response(json.dumps(data), status=200, mimetype='application/json')
-    return response
+    try:
+        data = dod.getDayOrderDates()
+        response = Response(json.dumps(data), status=200, mimetype='application/json')
+        return response
+    except:
+        data = {"status": "success", "msg": "Error in retriving data"}
+        response = Response(json.dumps(data), status=200, mimetype='application/json')
+        return response
+
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='192.168.1.40', port=8080)
