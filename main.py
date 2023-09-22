@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 dod = day_order_dates.DayOrderDates()
-dataVersion = 1
+dataVersion = 2
 
 CORS(app)
 
