@@ -1,12 +1,15 @@
 from flask import Flask
-from flask import request as rq
 from flask import Response
 import json
 import day_order_dates
+from flask_cors import CORS
 
 app = Flask(__name__)
 dod = day_order_dates.DayOrderDates()
 dataVersion = 1
+
+CORS(app)
+
 
 @app.route('/')
 def home():
@@ -29,4 +32,4 @@ def day_order_dates():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.1.40', port=8080)
+    app.run(host='0.0.0.0', port=8080)
